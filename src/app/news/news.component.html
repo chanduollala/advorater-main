@@ -1,0 +1,50 @@
+
+<div fxLayout="row-reverse" fxLayout.lt-md="column">
+  <div style="margin: 25px;height: 450px;" ngStyle.gt-sm="max-width: 33%">
+    <div class="card11 no-pad" fxLayout="row" style="margin: 5px">
+      <button mat-icon-button style=" padding: 0px;">
+        <mat-icon matPrefix class="input-icon">person</mat-icon>
+      </button>
+      <input type="text"
+             placeholder="Search for a blog"
+             aria-label="String"
+             matInput
+             #nameSearch
+             style="width: 100%"
+             ngStyle.gt-xs="width: 400px"
+      >
+    </div>
+    <div style="text-align: center; margin-top: 20px; margin-bottom: 10px; ">Or select from the following topics</div>
+    <div align="center" fxLayout="row wrap" fxLayoutAlign="center" style="overflow-y: scroll; height: 300px">
+      <div align="center" *ngFor="let spec of specs"   style="flex-grow: 1">
+        <mat-card style="border-radius: 10px" class="item">
+          <div class="align-items-center d-flex justify-content-center" style="height: 100%; font-size: 16px">{{spec.title}}</div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  <div style="width: 100%; flex-grow: 1">
+    <div class="container">
+      <div class="carousel">
+        <ng-container *ngFor="let slide of slides; let i = index">
+          <img
+            *ngIf="i === currentSlide"
+            [src]="slide.src"
+            class="slide"
+          />
+        </ng-container>
+
+        <!-- controls -->
+        <button class="control prev" (click)="onPreviousClick()">
+          <span class="arrow left"></span>
+        </button>
+        <button class="control next" (click)="onNextClick()">
+          <span class="arrow right"></span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>

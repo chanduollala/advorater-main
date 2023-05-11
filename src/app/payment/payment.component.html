@@ -1,0 +1,21 @@
+<div *ngIf="!paid" align="center">
+  <label style="font-size: 20px; margin-top: 200px">Amount Rs. 2000</label>
+  <br>
+  <button style="background-color: #3871e0; border-radius: 10px; width: 200px; height: 40px; color: #eeeeee; font-size: 20px;"
+          (click)="pay()">Pay
+  </button>
+</div>
+
+
+<div *ngIf="paid"  align="center">
+  <div class="card" align="center" style=" padding: 10px; border-radius: 10px;width: 600px; max-width: 90%; border: black 1px solid!important">
+    <label > {{'Order ID   \t:'+order_id}}</label>
+    <label > {{'Payment ID \t:'+payment_id}}</label>
+    <label > {{'Signature  \t:'+sign}}</label>
+
+    <button style="background-color: #3871e0; border-radius: 10px; width: 200px; height: 40px; color: #eeeeee; font-size: 20px;"
+            (click)="gotoProfile()">Go to profile
+    </button>
+  </div>
+
+</div>

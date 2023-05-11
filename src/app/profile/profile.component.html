@@ -1,0 +1,348 @@
+<div align="center" >
+  <div align="center" style="width: 1100px; max-width: 100%; "  >
+    <div  style="width: 100%" fxLayout="row" fxLayout.lt-md="column">
+      <div *ngIf="customer" ngStyle.lt-md="width:100%; max-width: 500px; margin:auto; height:auto" style="width: 600px;  max-width: 100%; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;margin: 3px; height: 95vh; padding-bottom: 40px; overflow-y: scroll ">
+        <div style="border-bottom: #444444 solid 1px!important;padding: 10px;">
+          <div align="left" style="padding-left: 10px">
+            <div class="name">{{customer.name}}</div>
+          </div>
+          <div class="ash" style="  padding-left: 5px;">
+            <div fxLayout="row"  >
+              <mat-icon>mail</mat-icon>
+              <div>
+                {{customer.username}}
+              </div>
+            </div>
+
+            <div fxLayout="row" >
+              <mat-icon>call</mat-icon>
+              <div>
+                {{customer.phone1}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div style="padding: 10px 10px" >
+          <button mat-button class="button22" (click)="logout()">
+            Logout
+          </button>
+        </div>
+
+
+
+
+
+
+
+
+      </div>
+      <div *ngIf="advocate" ngStyle.lt-md="width:100%; max-width: 500px; margin:auto; height:auto; padding:0" style="width: 600px;  max-width: 100%; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;margin: 3px; height: 95vh; padding-bottom: 40px; padding-right: 10px; overflow-y: scroll">
+        <div style="border-bottom: #444444 solid 1px!important;padding: 10px;">
+          <div fxLayout="row" style="height: 150px; max-height: 35vw; padding-left: 10px">
+            <div align="left">
+              <img  [src]="advocate.image || 'assets/advocate-icon.png'" style="width: 150px;max-width: 35vw;; aspect-ratio: 1; border-radius: 50%">
+            </div>
+            <div align="right" style="width: 100%; position: relative; padding-top: 10px" *ngIf="advocate.rating!=null">
+              <div style="max-width: 70vw;overflow: hidden" >
+                <star-rating style="position: absolute; right: 5px" [starType]="'svg'" [rating]="advocate.rating" [showHalfStars]="true" [readOnly]="true" [size]="'large'" ></star-rating>
+                <div style="position: absolute; right: 12px; top: 50px">Your rating : {{advocate.rating}} out of 5</div>
+              </div>
+              <div style="padding-right: 10px;" fxLayout="column" >
+
+                <button mat-button class="button11" style="position: absolute; bottom: 0; right: 0; margin: 10px; ">
+                  Edit profile
+                </button>
+              </div>
+            </div>
+
+          </div>
+          <div align="left"  style="padding-left: 10px" *ngIf="advocate.first_name!=null">
+            <div class="name">{{advocate.first_name+ " "+ advocate.last_name}}
+              <mat-chip style="background-color: darkgreen;min-height: 20px!important;
+  height: 20px!important;
+  font-size: 12px;
+  padding: 8px;
+  margin: 2px; " *ngIf="advocate.is_verified">
+                <mat-icon style="color: white; font-size: 14px; margin-top: 8px; width: 16px">verified_user</mat-icon>
+                Verified
+              </mat-chip>
+            </div>
+            <div class="bio blue">{{advocate.bio}}</div>
+          </div>
+          <div class="ash" style="  padding-left: 5px;
+">
+            <div fxLayout="row" *ngIf="advocate.bar_registration_number!=null">
+              <mat-icon>work</mat-icon>
+              <div>
+                Reg.No. {{advocate.bar_registration_number}}
+              </div>
+            </div>
+            <div fxLayout="row"  >
+              <mat-icon>mail</mat-icon>
+              <div>
+                {{advocate.username}}
+              </div>
+            </div>
+
+            <div fxLayout="row" *ngIf="advocate.first_name">
+              <mat-icon>room</mat-icon>
+              <div>
+                {{advocate.operational_city!.city_name+ ', ' + advocate.operational_city!.state}}
+              </div>
+            </div>
+            <div fxLayout="row" *ngIf="advocate.phone1!=null" >
+              <mat-icon>call</mat-icon>
+              <div>
+                {{advocate.phone1}}
+              </div>
+            </div>
+            <div fxLayout="row"  *ngIf="advocate.phone1!=null && advocate.phone2!.length>0">
+              <mat-icon>call</mat-icon>
+              <div>
+                {{advocate.phone2}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="border-bottom: #444444 solid 1px!important;padding-bottom: 10px">
+
+          <div  fxLayout="row" fxLayoutAlign="space-around center">
+            <mat-card class="card11 half11" style="padding: 5px 5px 5px 5px">
+              <div>
+                <div class="heading11">
+                  Account Status
+                </div>
+                <div class="text11 button11" style="padding: 5px; margin: 5px">
+                  {{(advocate.payment_done!=null)?((advocate.payment_done)?'Active':'Inactive'):'Inactive'}}
+                </div>
+              </div>
+            </mat-card>
+            <mat-card class="card11 half11" style="padding: 5px 5px 5px 5px">
+              <div >
+                <div class="heading11 ">
+                  Verification Status
+                </div>
+                <div class="text11 button11" style="padding: 5px; margin: 5px">
+                  {{(advocate.is_verified)?'Verified': 'Pending'}}
+                </div>
+              </div>
+
+            </mat-card>
+          </div>
+
+          <div style="padding: 0px 10px 10px 10px" >
+            {{
+            (advocate.first_name!=null)?'':'Complete registration'
+            }}
+            {{
+            (advocate.payment_done)?'You are now appearing in search'+((advocate.is_verified)?' with av verified tag':' without a verified tag'):'Complete payment'
+            }}
+
+
+          </div>
+          <div style="padding: 0px 10px" *ngIf="!advocate.first_name">
+            <button mat-button class="button22" (click)="contiueReg()">
+              Continue registration
+            </button>
+          </div>
+          <div style="padding: 0px 10px" *ngIf="advocate.first_name && !advocate.payment_done" (click)="goToPayment()">
+            <button mat-button class="button22">
+              Complete payment
+            </button>
+          </div>
+
+        </div>
+
+
+        <div class="card11" *ngIf="advocate.first_name">
+          <div fxLayout="row" fxLayoutAlign="space-between" style="background-color: white">
+            <div style="margin:10px ">Personal Details</div>
+            <div>
+              <div></div>
+              <div style="visibility: hidden">
+                <button mat-button class="button11" style=" padding: 0 10px ">
+                  <mat-icon>edit</mat-icon>
+                  Update
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="ash" fxLayout="row" fxLayoutAlign="space-around">
+            <div fxLayout="row"   >
+              <mat-icon>male</mat-icon>
+              <div>
+                {{advocate.gender}}
+              </div>
+            </div>
+            <div fxLayout="row"  >
+              <mat-icon>cake</mat-icon>
+              <div>
+                {{advocate.dob}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card11" *ngIf="advocate.first_name">
+          <div fxLayout="row" fxLayoutAlign="space-between" style="background-color: white">
+            <div style="margin:10px ">Professional Details</div>
+            <div>
+              <div></div>
+              <div >
+                <button  mat-button class="button11" style=" padding: 0 10px ">
+                  <mat-icon>edit</mat-icon>
+                  Update
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div fxLayout="column">
+            <div fxLayout="row"  fxLayoutAlign="space-between" >
+              <div class="ash" fxLayout="row" >
+                <mat-icon>money</mat-icon>
+                <div >
+                  Consultation Fee
+                </div>
+              </div>
+              <div style="margin: 10px">
+                {{advocate.consultation_fee}}
+              </div>
+            </div>
+            <div fxLayout="row"  fxLayoutAlign="space-between" >
+              <div class="ash" fxLayout="row" >
+                <mat-icon>work</mat-icon>
+                <div>
+                  Experience (in years)
+                </div>
+              </div>
+              <div style="margin: 10px">
+                {{current_year-advocate.career_start_year!}}
+              </div>
+            </div>
+
+          </div>
+          <div fxLayout="row"  fxLayoutAlign="space-between" >
+            <div class="ash" fxLayout="row" >
+              <mat-icon>tag</mat-icon>
+              <div>
+                Tags
+              </div>
+            </div>
+          </div>
+          <mat-chip-list style="margin: 20px" fxLayout="row wrap" fxLayoutAlign="center">
+            <mat-chip *ngFor="let tag of advocate.advocate_tags" style="background-color: #206398">
+              <div style="font-size: 14px; color: white;">{{tag.title}}</div>
+            </mat-chip>
+          </mat-chip-list>
+        </div>
+
+
+
+
+
+        <div class="card11" *ngIf="advocate.first_name">
+          <div fxLayout="row" fxLayoutAlign="space-between" style="background-color: white">
+            <div style="margin:10px ">KYC Details</div>
+          </div>
+
+          <div class="ash" fxLayout="row" fxLayoutAlign="space-around">
+            <div fxLayout="row"   >
+              <mat-icon>public</mat-icon>
+              <div>
+                {{advocate.id_proof_type}}
+              </div>
+            </div>
+            <div fxLayout="row"  >
+              <mat-icon>pin</mat-icon>
+              <div>
+                {{advocate.id_proof_number}}
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="card11" *ngIf="advocate.first_name">
+          <div fxLayout="row" fxLayoutAlign="space-between" style="background-color: white">
+            <div style="margin : 10px 10px 0px 10px ">Addresses</div>
+          </div>
+
+          <div class="ash" align="left" fxLayout="column">
+            <div style="margin:10px; color: black ">Residential Addresses</div>
+            <div fxLayout="row" style="margin-left:10px;"  >
+              <mat-icon>home</mat-icon>
+              <div class="blue">
+                {{advocate.home_address?.door_no + ', ' + advocate.home_address?.street + ', ' + advocate.home_address?.city?.city_name + ', ' + advocate.home_address?.pincode}}
+              </div>
+            </div>
+            <div style="margin:10px; color: black ">Office Addresses</div>
+            <div fxLayout="row" style="margin-left:10px;" >
+              <mat-icon >work</mat-icon>
+              <div class="blue">
+                {{advocate.office_address?.door_no + ', ' + advocate.office_address?.street + ', ' + advocate.office_address?.city?.city_name + ', ' + advocate.office_address?.pincode}}
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+        <mat-expansion-panel class="card11" *ngIf="advocate.first_name">
+          <mat-expansion-panel-header style="background-color: white">
+            <div class="heading11">Payment history</div>
+          </mat-expansion-panel-header>
+          <div *ngFor="let payment of advocate.payments">
+            <div  fxLayout="row"fxLayoutAlign="space-between" style="margin-top: 10px; margin-bottom: 5px">
+              <div class="text11">{{payment.amount}}</div>
+              <div *ngIf="payment.is_success=='1'">
+                Success
+                <mat-icon class="text11">check</mat-icon>
+              </div>
+              <div *ngIf="payment.is_success!='1'">
+                Failed
+                <mat-icon class="text11">close</mat-icon>
+              </div>
+            </div>
+            <div style="border: #cccccc solid 1px!important;"></div>
+          </div>
+
+        </mat-expansion-panel>
+
+
+        <div class="card11">
+          <div class="heading11" (click)="logout()">
+            Logout
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+      </div>
+
+      <div ngStyle.lt-md="width:100%; max-width: 500px; margin:auto;height: auto" style="width: 500px;padding-top: 20px;  max-width: 100%; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;margin: 3px; height: 95vh; overflow-y: scroll " fxLayout="column">
+        <div *ngIf="advocate" class="heading11" style="font-size: 20px">Customer Interactions</div>
+        <div *ngIf="customer" class="heading11" style="font-size: 20px">Previous Interactions</div>
+        <div class="card11" align="left"  *ngFor="let interaction of interactions">
+          <div *ngIf="advocate" class="heading11" style="font-weight: bold; padding-left: 10px; color: #3871e0"><span style="color: black">From </span>{{interaction.customer_name}}</div>
+          <div *ngIf="customer" class="heading11" style="font-weight: bold; padding-left: 10px; color: #3871e0"><span style="color: black">Sent to </span>{{interaction.advocate_name}}</div>
+          <div class="text11" style="padding-left: 10px">{{interaction.interaction_type}}</div>
+          <div class="input-label" style="padding-left: 10px">{{interaction.updated_at}}</div>
+          <div class="text11 text-box" style="color: #444444">{{interaction.message}}</div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+</div>
+
+
+

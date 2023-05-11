@@ -1,0 +1,196 @@
+<div align="center" style="">
+  <h1 style="color: #000">Signup to Advorater</h1>
+</div>
+
+<div>
+  <div align="center">
+    Signup as
+  </div>
+  <div fxLayout="row" fxLayoutAlign="center" align="center">
+    <button (click)="mode='customer'" style="margin: 10px">
+      Customer
+    </button>
+    <button (click)="mode='advocate'"  style="margin: 10px">
+      Advocate
+    </button>
+  </div>
+</div>
+
+
+
+<div align="center" >
+
+  <mat-card *ngIf="mode=='customer'" style="background-color: white;padding: 30px; max-width: 500px; overflow-y: clip ">
+    <div align="center" style="color: black; margin-bottom: 20px; font-size: 18px">
+      Signing up as a customer
+    </div>
+
+    <form [formGroup]="customer">
+
+      <div class="form-group" >
+        <mat-card class="input-round" fxLayout="row">
+          <button mat-icon-button style="padding: 0px; margin-left: 0">
+            <mat-icon matPrefix class="input-icon">mail_outline</mat-icon>
+          </button>
+          <input type="text" id="customer-email" class="input" formControlName="username"
+                 [value]="customer.value.username"
+                 style="background-color: #ffffff;height: 100%; padding: 0px; font-size: 16px" matInput
+                 placeholder="Email address" name="username" aria-label="String">
+          <!--mat-error *ngIf="c_username!.hasError('email') && !c_username!.hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="c_username!.hasError('required')">
+          </mat-error-->
+
+        </mat-card>
+      </div>
+
+
+      <div formGroupName="user_detail_attributes">
+        <div class="form-group" >
+
+
+          <div formGroupName="name_attributes">
+            <mat-card class="input-round" fxLayout="row">
+              <button mat-icon-button style="">
+                <mat-icon matPrefix class="input-icon">account_circle</mat-icon>
+              </button>
+              <input type="text" id="customer-name" class="input" formControlName="first_name"
+                     style="background-color: #ffffff;height: 100%; padding: 0px; font-size: 16px" matInput
+                     placeholder="Full Name" name="name" aria-label="String">
+
+            </mat-card>
+          </div>
+
+        </div>
+
+        <div class="form-group" >
+          <div formGroupName="contact_detail_attributes">
+            <mat-card class="input-round" fxLayout="row" style=" padding-top: 1px !important;">
+              <button mat-icon-button style=" padding: 0px; height: 97%">
+                <mat-icon matPrefix class="input-icon">phone</mat-icon>
+              </button>
+              <button mat-icon-button style=" height: 30px; color: black; font-size: 16px; padding-top: 0; margin: 0">
+                +91
+              </button>
+              <input type="tel" matInput formControlName="phone1"
+                     style="height: 38px; background-color: #ffffff; padding: 0px; font-size: 16px;width: 90%"
+                     placeholder="Phone Number (optional)">
+
+            </mat-card>
+          </div>
+
+        </div>
+      </div>
+
+
+      <div class="form-group" >
+        <mat-card class="input-round" fxLayout="row">
+          <button mat-icon-button style=" padding: 0px;">
+            <mat-icon matPrefix class="input-icon">vpn_key</mat-icon>
+          </button>
+          <input type="text" id="customer-password" class="input" formControlName="password_digest"
+                 style="background-color: #ffffff;height: 100%; padding: 0px; font-size: 16px" matInput
+                 placeholder="Set a Password" name="password" aria-label="String">
+
+        </mat-card>
+      </div>
+
+
+    </form>
+
+
+    <div *ngIf="!otpSent" align="center" class="form-item" style="padding: 20px">
+      <button mat-raised-button type="button" class="big-button" (click)="sendOTP(c_username!.value!, customer)"
+              style="width: 100%; height: 41px;">
+        Send OTP
+      </button>
+    </div>
+
+
+    <div *ngIf="otpSent" align="center" class="form-item" style="padding: 20px">
+      Enter OTP sent to your email
+      <ng-otp-input (onInputChange)="onOtpChange($event)"
+                    [config]="{length:6, containerStyles: { color: 'black', 'background-color': '#cccccc', padding: '10px'}, placeholder: '0'}"
+                    style="color: #6554c0;"></ng-otp-input>
+      <br>
+      <button mat-raised-button type="button" class="big-button" (click)="customerSubmit()"
+              style="width: 100%; height: 40px;">
+        Signup as a Customer
+      </button>
+
+    </div>
+
+
+  </mat-card>
+  <mat-card *ngIf="mode=='advocate'" style="background-color: white;padding: 30px; max-width: 500px; overflow-y: clip ">
+
+    <div align="center" style="color: black; margin-bottom: 20px; font-size: 18px">
+      Signing up as an advocate
+    </div>
+
+    <form [formGroup]="advocate">
+      <div formGroupName="user_attributes">
+        <div class="form-group" >
+          <mat-card class="input-round" fxLayout="row">
+            <button mat-icon-button style=" padding: 0px;">
+              <mat-icon matPrefix class="input-icon">mail_outline</mat-icon>
+            </button>
+            <input type="text" id="adv-email" class="input" formControlName="username" matInput
+                   placeholder="Email address" name="username"
+                   style="background-color: #ffffff;height: 100%; padding: 0px; font-size: 16px" aria-label="String">
+
+          </mat-card>
+        </div>
+
+        <div class="form-group" >
+          <mat-card class="input-round" fxLayout="row">
+            <button mat-icon-button style=" padding: 0px;">
+              <mat-icon matPrefix class="input-icon">vpn_key</mat-icon>
+            </button>
+            <input type="text" id="password" class="input" formControlName="password_digest" matInput
+                   placeholder="Set a Password" name="password"
+                   style="background-color: #ffffff;height: 100%; padding: 0px; font-size: 16px" aria-label="String">
+
+          </mat-card>
+        </div>
+
+      </div>
+
+
+      <div style="padding-left: 30px; padding-right: 30px">
+        <label style="color: black;  padding-left: 20px; padding-right: 20px">You will be asked to resume your
+          application on your first login</label>
+      </div>
+
+
+      <div *ngIf="!otpSent" align="center" class="form-item" style="padding: 20px">
+        <button mat-raised-button type="button" class="big-button" (click)="sendOTP(a_username!.value!, advocate)"
+                style="width: 100%; height: 41px;">
+          Send OTP
+        </button>
+      </div>
+
+
+      <div *ngIf="otpSent" align="center" class="form-item" style="padding: 20px">
+        Enter OTP sent to your email
+        <ng-otp-input (onInputChange)="onOtpChange($event)"
+                      [config]="{length:6, containerStyles: { color: 'black', 'background-color': '#cccccc', padding: '10px'}, placeholder: '0'}"
+                      style="color: #6554c0;"></ng-otp-input>
+        <br>
+        <button mat-raised-button type="button" class="big-button" (click)="advocateSubmit()"
+                style="width: 100%; height: 40px;">
+          Signup as an Advocate
+        </button>
+
+      </div>
+    </form>
+
+
+  </mat-card>
+
+</div>
+<div align="center" style="padding-top: 20px;">
+  <a (click)="gotoLogin()" style=" font-size: 14px">Already registered? <b>Login</b></a>
+</div>
+

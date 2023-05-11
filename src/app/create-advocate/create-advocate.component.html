@@ -1,0 +1,440 @@
+<div align="center" *ngIf="username" [formGroup]="professionalDetails">
+  <div align="center" style="width: 1000px; max-width: 100%; "  >
+    <div align="center" style="width: 100%"  fxLayout="column" >
+      <div  ngStyle.lt-md="width:100%; max-width: 500px; margin:auto" style="width: 600px;padding: 10px;  max-width: 100%; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;margin: 3px; min-height: 100vh; ">
+
+        <div formGroupName="user_attributes">
+          <div formGroupName="user_detail_attributes" style="border-bottom: #444444 solid 1px!important;;">
+
+            <div class="wrapper11">
+              <div class="heading11 " >Basic Details</div>
+              <div class="input-label" style="margin: 10px">Profile picture (Click to upload)*</div>
+              <div  style="height: 150px; max-height: 35vw; padding-left: 10px">
+                <div align="center" >
+                  <!--input #file type="file" class="file-input"
+                         (change)="compressFile()" formControlName="image" style="display: none" required-->
+
+                  <button mat-raised-button (click)="preview()"
+                          style="width: 150px;max-width: 35vw;; aspect-ratio: 1; border-radius: 50%">
+                    <div class="ui-content align-icon-right" style="width: 100%">
+                      <div class="container" aria-hidden="false" style="width: 100%">
+                        <img [src]="image?.value!||'assets/advocate-icon.png'" width="100%" >
+                      </div>
+                    </div>
+                    <!--{{personalDetails.get('profilePic')!.status}}-->
+                  </button>
+                </div>
+              </div>
+              <div formGroupName="name_attributes">
+                <mat-card class="input-card" #tooltip="matTooltip"
+                          matTooltip="Only letters and spaces are allowed"
+                          matTooltipPosition="right"
+                          matTooltipHideDelay="10" fxLayout="column">
+                  <div class="input-label">First name *</div>
+                  <div fxLayout="row" fxLayoutAlign="space-between" class="input-wrapper">
+                    <input matInput formControlName="first_name" placeholder="First name *">
+
+                    <mat-icon *ngIf="first_name!.touched"
+                              [style.color]="first_name!.valid? 'green' : 'red'"
+
+                    >{{first_name!.valid ? 'check_circle' : 'error'}}</mat-icon>
+                  </div>
+
+                </mat-card>
+
+                <mat-card class="input-card" fxLayout="column">
+                  <div class="input-label">Middle name </div>
+                  <div fxLayout="row" fxLayoutAlign="space-between" class="input-wrapper">
+                    <input matInput formControlName="middle_name" placeholder="Middle name ">
+
+                    <mat-icon *ngIf="middle_name!.touched"
+                              [style.color]="middle_name!.valid? 'green' : 'red'"
+                    >{{middle_name!.valid ? 'check_circle' : 'error'}}</mat-icon>
+                  </div>
+
+                </mat-card>
+
+
+                <mat-card class="input-card" fxLayout="column">
+                  <div class="input-label">Last name *</div>
+                  <div fxLayout="row" fxLayoutAlign="space-between" class="input-wrapper">
+                    <input matInput formControlName="last_name" placeholder="Last name *">
+
+                    <mat-icon  *ngIf="last_name!.touched"
+                               [style.color]="last_name!.valid? 'green' : 'red'">
+                      {{last_name!.valid ? 'check_circle' : 'error'}}</mat-icon>
+                  </div>
+
+                </mat-card>
+              </div>
+
+
+
+              <mat-card class="input-card" fxLayout="column">
+                <div class="input-label">Date of birth *</div>
+                <div fxLayout="row" fxLayoutAlign="space-between" class="input-wrapper">
+                  <input type="date" matInput formControlName="dob" placeholder="Date of Birth *" >
+
+                  <mat-icon  *ngIf="dob!.touched"
+                             [style.color]="dob!.valid? 'green' : 'red'">
+                    {{dob!.valid ? 'check_circle' : 'error'}}</mat-icon>
+                </div>
+
+              </mat-card>
+
+
+              <mat-card class="input-card" fxLayout="column">
+                <div class="input-label">Gender *</div>
+                <div fxLayout="row" fxLayoutAlign="space-between" class="input-wrapper">
+                  <select required formControlName="gender" style="font-size: 16px">
+                    <option value="F" selected>Female</option>
+                    <option value="M">Male</option>
+                    <option value="O">Prefer not to say</option>
+                  </select>
+                  <mat-icon  *ngIf="gender!.touched"
+                             [style.color]="gender!.valid? 'green' : 'red'">
+                    {{gender!.valid ? 'check_circle' : 'error'}}</mat-icon>
+                </div>
+
+              </mat-card>
+
+            </div>
+
+
+
+
+            <div class="wrapper11" formGroupName="contact_detail_attributes">
+              <div class="heading11 ">Contact Details</div>
+
+              <mat-card class="input-card" fxLayout="column">
+                <div class="input-label">Primary Phone Number *</div>
+                <div fxLayout="row" fxLayoutAlign="space-between" class="input-wrapper">
+                  <input  matInput formControlName="phone1" placeholder="Phone 1 *">
+
+                  <mat-icon  *ngIf="phone1!.touched"
+                             [style.color]="phone1!.valid? 'green' : 'red'">
+                    {{phone1!.valid ? 'check_circle' : 'error'}}</mat-icon>
+                </div>
+
+              </mat-card>
+              <mat-card class="input-card" fxLayout="column">
+                <div class="input-label">Alternate Phone Number *</div>
+                <div fxLayout="row" fxLayoutAlign="space-between" class="input-wrapper">
+                  <input  matInput formControlName="phone2" placeholder="Phone 2 *">
+
+                  <mat-icon  *ngIf="phone2!.touched"
+                             [style.color]="phone2!.valid? 'green' : 'red'">
+                    {{phone2!.valid ? 'check_circle' : 'error'}}</mat-icon>
+                </div>
+
+              </mat-card>
+              <mat-card class="input-card" fxLayout="column">
+                <div class="input-label">Email *</div>
+                <div fxLayout="row" fxLayoutAlign="space-between" class="input-wrapper">
+                  <input matInput formControlName="contact_email" placeholder="Contact Email *">
+
+                  <mat-icon  *ngIf="contact_email!.touched"
+                             [style.color]="contact_email!.valid? 'green' : 'red'">
+                    {{contact_email!.valid ? 'check_circle' : 'error'}}</mat-icon>
+                </div>
+              </mat-card>
+            </div>
+
+
+
+
+            <div class="wrapper11" fxLayout="column" formGroupName="address_attributes">
+              <div class="heading11 ">Residential Address</div>
+              <mat-card class="input-card" fxLayout="column">
+                <div class="input-label">Address Line 1 *</div>
+                <div fxLayout="row" fxLayoutAlign="space-between" class="input-wrapper">
+                  <input  matInput formControlName="door_no" placeholder="Address Line 1 *" >
+
+                  <mat-icon  *ngIf="door_no!.touched"
+                             [style.color]="door_no!.valid? 'green' : 'red'">
+                    {{door_no!.valid ? 'check_circle' : 'error'}}</mat-icon>
+                </div>
+
+              </mat-card>
+              <mat-card class="input-card" fxLayout="column">
+                <div class="input-label">Address Line 2 *</div>
+                <div fxLayout="row" fxLayoutAlign="space-between" class="input-wrapper">
+                  <input  matInput formControlName="street" placeholder="Address Line 2 *" >
+
+                  <mat-icon  *ngIf="street!.touched"
+                             [style.color]="street!.valid? 'green' : 'red'">
+                    {{street!.valid ? 'check_circle' : 'error'}}</mat-icon>
+                </div>
+
+              </mat-card>
+              <mat-card class="input-card" fxLayout="column">
+                <div class="input-label">City *</div>
+                <div fxLayout="row" fxLayoutAlign="space-between" class="input-wrapper">
+                  <search-dropdown
+                    [items]="cities"
+                    [placeholder]="'Select city'"
+                    [display_label]="'city_name'"
+                    [value]="'id'"
+                    formControlName="city_id"
+                  >
+                  </search-dropdown>
+                  <mat-icon  *ngIf="city_id!.value!=null"
+                             [style.color]="city_id!.valid? 'green' : 'red'">
+                    {{city_id!.valid ? 'check_circle' : 'error'}}</mat-icon>
+                </div>
+
+              </mat-card>
+
+              <mat-card class="input-card" fxLayout="column">
+                <div class="input-label">Pin code *</div>
+                <div fxLayout="row" fxLayoutAlign="space-between" class="input-wrapper">
+                  <input matInput formControlName="pincode" placeholder="Pin code *" >
+                  <mat-icon  *ngIf="pincode!.touched"
+                             [style.color]="pincode!.valid? 'green' : 'red'">
+                    {{pincode!.valid ? 'check_circle' : 'error'}}</mat-icon>
+                </div>
+              </mat-card>
+
+            </div>
+
+
+            <div class="wrapper11" fxLayout="column" formGroupName="id_proof_attributes">
+              <div class="heading11 ">KYC Details</div>
+
+              <mat-card class="input-card" fxLayout="column">
+                <div class="input-label">Document type *</div>
+                <div fxLayout="row" fxLayoutAlign="space-between" class="input-wrapper">
+                  <search-dropdown
+                    [items]="doc_types"
+                    [placeholder]="'Select document type'"
+                    [display_label]="'document_type'"
+                    [value]="'id'"
+                    formControlName="document_type_id"
+                  ></search-dropdown>
+                  <mat-icon  *ngIf="id_proof_type!.value!=null"
+                             [style.color]="id_proof_type!.valid? 'green' : 'red'">
+                    {{id_proof_type!.valid ? 'check_circle' : 'error'}}</mat-icon>
+                </div>
+              </mat-card>
+              <mat-card class="input-card" fxLayout="column">
+                <div class="input-label">ID Proof Number *</div>
+                <div fxLayout="row" fxLayoutAlign="space-between" class="input-wrapper">
+                  <input matInput formControlName="document_number" placeholder="ID Proof Number *" >
+                  <mat-icon  *ngIf="id_proof_number!.touched"
+                             [style.color]="id_proof_number!.valid? 'green' : 'red'">
+                    {{id_proof_number!.valid ? 'check_circle' : 'error'}}</mat-icon>
+                </div>
+              </mat-card>
+
+              <mat-card class="input-card" fxLayout="column" >
+                <div class="input-label">ID Proof File (Click on image to upload)*</div>
+
+                <div fxLayout="row" fxLayoutAlign="center">
+
+                  <button mat-raised-button color="primary" class="upload-btn" (click)="previewIDProof()"
+                          style="flex-grow: 1; margin: 0px 0px">
+
+                    <div class="ui-content align-icon-right" style="width: 100%">
+                      <div class="container" aria-hidden="false" style="width: 100%">
+                        <img [src]="id_proof_file?.value!||'assets/bg1.png'" width="100%" >
+                      </div>
+                    </div>
+                  </button>
+                  <mat-icon  *ngIf="id_proof_file!.value!=null"
+                             [style.color]="id_proof_file!.valid? 'green' : 'red'" style="min-width: 30px">
+                    {{id_proof_file!.valid ? 'check_circle' : 'error'}}</mat-icon>
+                </div>
+
+
+              </mat-card>
+            </div>
+          </div>
+        </div>
+
+        <div class="wrapper11" fxLayout="column" formGroupName="office_address_attributes">
+          <div class="heading11 ">Office Address</div>
+          <mat-card class="input-card" fxLayout="column">
+            <div class="input-label">Address Line 1 *</div>
+            <div fxLayout="row" fxLayoutAlign="space-between" class="input-wrapper">
+              <input  matInput formControlName="door_no" placeholder="Address Line 1 *" >
+
+              <mat-icon  *ngIf="office_door_no!.touched"
+                         [style.color]="office_door_no!.valid? 'green' : 'red'">
+                {{office_door_no!.valid ? 'check_circle' : 'error'}}</mat-icon>
+            </div>
+
+          </mat-card>
+          <mat-card class="input-card" fxLayout="column">
+            <div class="input-label">Address Line 2 *</div>
+            <div fxLayout="row" fxLayoutAlign="space-between" class="input-wrapper">
+              <input  matInput formControlName="street" placeholder="Address Line 2 *" >
+
+              <mat-icon  *ngIf="office_street!.touched"
+                         [style.color]="office_street!.valid? 'green' : 'red'">
+                {{office_street!.valid ? 'check_circle' : 'error'}}</mat-icon>
+            </div>
+
+          </mat-card>
+          <mat-card class="input-card" fxLayout="column">
+            <div class="input-label">City *</div>
+            <div fxLayout="row" fxLayoutAlign="space-between" class="input-wrapper">
+              <search-dropdown
+                [items]="cities"
+                [placeholder]="'Select city'"
+                [display_label]="'city_name'"
+                [value]="'id'"
+                formControlName="city_id"
+              >
+              </search-dropdown>
+              <mat-icon  *ngIf="office_city_id!.value!=null"
+                         [style.color]="office_city_id!.valid? 'green' : 'red'">
+                {{office_city_id!.valid ? 'check_circle' : 'error'}}</mat-icon>
+            </div>
+
+          </mat-card>
+
+          <mat-card class="input-card" fxLayout="column">
+            <div class="input-label">Pin code *</div>
+            <div fxLayout="row" fxLayoutAlign="space-between" class="input-wrapper">
+              <input matInput formControlName="pincode" placeholder="Pin code *" >
+              <mat-icon  *ngIf="pincode!.touched"
+                         [style.color]="pincode!.valid? 'green' : 'red'">
+                {{pincode!.valid ? 'check_circle' : 'error'}}</mat-icon>
+            </div>
+          </mat-card>
+
+        </div>
+
+      <div class="wrapper11" fxLayout="column" formGroupName="bar_registration_attributes">
+        <div class="heading11 ">Bar Registration Details</div>
+        <mat-card class="input-card" fxLayout="column">
+          <div class="input-label">Bar Registration Number *</div>
+          <div fxLayout="row" fxLayoutAlign="space-between" class="input-wrapper">
+            <input matInput formControlName="document_number" placeholder="Bar Registration Number *" >
+            <mat-icon  *ngIf="bar_registration_number!.touched"
+                       [style.color]="bar_registration_number!.valid? 'green' : 'red'">
+              {{bar_registration_number!.valid ? 'check_circle' : 'error'}}</mat-icon>
+          </div>
+        </mat-card>
+
+        <mat-card class="input-card" fxLayout="column" >
+          <div class="input-label">ID Proof File (Click on image to upload)*</div>
+
+          <div fxLayout="row" fxLayoutAlign="center">
+
+
+            <button mat-raised-button color="primary" class="upload-btn" (click)="previewBarProof()"
+                    style="flex-grow: 1; margin: 0px 0px">
+
+              <div class="ui-content align-icon-right" style="width: 100%">
+                <div class="container" aria-hidden="false" style="width: 100%">
+                  <img [src]="bar_proof_file?.value!||'assets/bg1.png'" width="100%" >
+                </div>
+              </div>
+            </button>
+            <mat-icon  *ngIf="bar_proof_file!.value!=null"
+                       [style.color]="bar_proof_file!.valid? 'green' : 'red'" style="min-width: 30px">
+              {{bar_proof_file!.valid ? 'check_circle' : 'error'}}</mat-icon>
+          </div>
+
+
+        </mat-card>
+
+      </div>
+
+            <div class="wrapper11" fxLayout="column" >
+              <div class="heading11 ">Display Information</div>
+
+
+              <mat-card class="input-card" fxLayout="column">
+                <div class="input-label">Bio *</div>
+                <div fxLayout="row" fxLayoutAlign="space-between" class="input-wrapper">
+                  <textarea maxlength="120" matInput formControlName="bio" placeholder="Bio *"></textarea>
+
+                  <mat-icon  *ngIf="bio!.touched"
+                             [style.color]="bio!.valid? 'green' : 'red'">
+                    {{bio!.valid ? 'check_circle' : 'error'}}</mat-icon>
+                </div>
+
+              </mat-card>
+
+              <mat-card class="input-card" fxLayout="column">
+                <div class="input-label">Experience (in Years)) *</div>
+                <div fxLayout="row" fxLayoutAlign="space-between" class="input-wrapper">
+                  <input matInput [formControl]="experience" placeholder="Experience *" >
+                  <mat-icon  *ngIf="career_start_year!.value!=0"
+                             [style.color]="career_start_year!.valid? 'green' : 'red'">
+                    {{career_start_year!.valid ? 'check_circle' : 'error'}}</mat-icon>
+                </div>
+                <div class="input-label" *ngIf="career_start_year?.valid"> Started career in the year {{career_start_year?.value}}</div>
+              </mat-card>
+
+
+              <mat-card class="input-card" fxLayout="column">
+                <div class="input-label">Consultation Fee *</div>
+                <div fxLayout="row" fxLayoutAlign="space-between" class="input-wrapper">
+                  <input matInput formControlName="consultation_fee" placeholder="Consultation Fee *" >
+                  <mat-icon  *ngIf="consultation_fee!.touched"
+                             [style.color]="consultation_fee!.valid? 'green' : 'red'">
+                    {{consultation_fee!.valid ? 'check_circle' : 'error'}}</mat-icon>
+                </div>
+              </mat-card>
+
+              <mat-card class="input-card" fxLayout="column">
+                <div class="input-label">Operational City (Select city where you work. This will be shown in search across Advorater) *</div>
+                <div fxLayout="row" fxLayoutAlign="space-between" class="input-wrapper">
+                  <search-dropdown
+                    [items]="cities"
+                    [placeholder]="'Select city'"
+                    [display_label]="'city_name'"
+                    [value]="'id'"
+                    formControlName="operational_city_id"
+                  >
+                  </search-dropdown>
+                  <mat-icon  *ngIf="operational_city_id!.value!=null"
+                             [style.color]="operational_city_id!.valid? 'green' : 'red'">
+                    {{operational_city_id!.valid ? 'check_circle' : 'error'}}</mat-icon>
+                </div>
+
+              </mat-card>
+
+
+              <mat-card class="input-card" fxLayout="column">
+                <div class="input-label">Select Tags (upto 5) tags will make you visible in search *</div>
+                <mat-chip-list style="margin: 20px" fxLayout="row wrap">
+                  <mat-chip *ngFor="let tag of tags?.value; index as i" (click)="removeTag(i)" style="background-color: #206398">
+                    <div style="font-size: 14px; color: white;">{{tag_title(tag.tag_id)}}</div>
+                    <mat-icon style="font-size: 18px;color: white; padding-top: 3px">close</mat-icon>
+                  </mat-chip>
+                </mat-chip-list>
+                <div fxLayout="row" fxLayoutAlign="space-between" class="input-wrapper" *ngIf="tags.length<5">
+                  <search-dropdown
+                    [items]="filteredTags"
+                    [placeholder]="'Add New Tag'"
+                    [display_label]="'title'"
+                    [value]="'id'"
+                    [formControl]="selected_tag"
+                  >
+                  </search-dropdown>
+                  <mat-icon  *ngIf="tags!.length!=null"
+                             [style.color]="tags!.valid? 'green' : 'red'">
+                    {{tags!.valid ? 'check_circle' : 'error'}}</mat-icon>
+                </div>
+
+              </mat-card>
+            </div>
+
+        <div style="padding: 0px 10px" >
+          <div class="input-label" style="color: red">Make sure all fields are filled with valid data. Hover on a field to know the constratints</div>
+          <button mat-button class="button22" (click)="submit()" [disabled]="!professionalDetails?.valid">
+            Continue to payment
+          </button>
+        </div>
+
+
+      </div>
+    </div>
+
+  </div>
+
+</div>

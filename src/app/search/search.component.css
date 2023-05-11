@@ -1,0 +1,85 @@
+.text11{
+  color: black;
+  font-size: 14px;
+}
+.card11{
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 10px;;
+  margin: 10px;
+  background-color: white;
+  border-radius: 10px;
+  color: black;
+  padding: 10px;
+  max-width: 100%;
+}
+
+.no-pad{
+  padding: 5px;
+  height: 45px;
+  max-width: 100%!important;
+}
+
+input{
+  color: black;
+}
+
+input::placeholder {
+  color: darkgray;
+}
+
+
+.half11{
+  width: 50%;
+}
+
+
+.advocate-card{
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 20px;;
+  max-width: 100%;
+}
+
+
+.tag-list mat-chip{
+  min-height: 20px!important;
+  height: 20px!important;
+  font-size: 12px;
+  padding: 8px;
+  margin: 2px;
+  background-color: #3871e0;
+}
+
+.tag-list{
+  height: 40px;
+  align-items: flex-start;
+  display: flex;
+}
+
+.button22{
+  border: #cccccc 1px solid !important;
+  background-color: #3871e0;
+  color: #eeeeee;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 500px;
+
+}
+
+
+.name{
+  height:35px; width:100%;margin-top: 5px; font-size:18px; white-space: nowrap; overflow-x: hidden;
+
+}
+
+
+star-rating .star-container svg{
+  z-index: 0!important;
+}
+
+
+.item{
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 20px;;
+  margin: 10px;
+  color: black;
+  height: 80px;
+}

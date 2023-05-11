@@ -1,0 +1,12 @@
+input::placeholder {
+  color: darkgray;
+}
+
+input{
+  color: black;
+}
+
+
+.form-group{
+  padding-left: 30px; padding-right: 30px; padding-bottom: 0px
+}

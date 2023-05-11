@@ -1,0 +1,68 @@
+<div style="padding: 10px;color: black">
+  <div align="center">
+    <div class="logo">
+      <a>
+        <img style="border-radius: 0%; height: 80px " src="assets/logo.png" alt="Logo"/>
+      </a>
+    </div>
+  </div>
+
+  <div align="center" style="">
+    <label style="color:#000; width: 100%; padding-top: 10px; padding-bottom: 20px; font-size: 20px">Welcome to Advorater</label>
+  </div>
+
+  <div class="container" style="width: 100% ;">
+    <form [formGroup]="login_form">
+      <div style="padding-bottom: 30px">
+
+        <mat-card class="input-round" fxLayout="row" >
+          <button mat-icon-button style=" padding: 0px;">
+            <mat-icon matPrefix class="input-icon">person</mat-icon>
+          </button>
+          <input type="text" formControlName="username" style="color: black; height: 100%; padding: 0px; font-size: 16px" matInput placeholder="Your username or email" >
+        </mat-card>
+
+      </div>
+
+      <div style="padding-bottom: 30px">
+
+        <mat-card class="input-round" fxLayout="row">
+          <button mat-icon-button style=" padding: 0px;">
+            <mat-icon matPrefix class="input-icon">password</mat-icon>
+          </button>
+          <input type="text" id="password"  formControlName="password"
+                 style="color: black;background-color: #ffffff;height: 100%; padding: 0px; font-size: 16px" matInput
+                 placeholder="Your Password" name="password" aria-label="String"
+                 [type]="hide ? 'password' : 'text'">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide" style=" padding: 0px;">
+            <mat-icon
+              style="color: #000000; padding: 0px; ">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+
+        </mat-card>
+
+      </div>
+
+
+      <div style="padding-bottom: .5rem" align="center">
+        <a class="text-link forgot-password-link " style="font-size: 16px; " data-analytics="AuthForgotPassword"
+           (click)="forgotPassword()">Forgot your password?</a>
+      </div>
+
+
+      <div align="center" class="form-item" style="padding-top: 20px">
+        <button mat-raised-button type="submit" class="big-button" (click)="login()"
+                style="background-color: darkcyan !important;width: 100%; height: 40px; ">
+          Login
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div align="center" style="padding-top: 20px; padding-bottom: 10px">
+    <div routerLink="/signup" routerLinkActive="true" (click)="dialogRef.close()" style="  font-size: 14px">Not registered yet? <b><u
+      style="color:blue;">Signup</u></b></div>
+  </div>
+</div>
+

@@ -1,0 +1,125 @@
+<div class="toolbar" role="banner">
+  <img
+    style="padding-top: 0; overflow: visible"
+    alt="VCE Logo"
+    height="38px"
+    width="100px"
+    src="assets/advoraterlogo.png"
+    routerLink="/" routerLinkActive="true"
+  >
+  <button class="toolbar-button-rectangle" style="padding-left: 0;margin-left: 0;  overflow: visible">{{(city!=null)?city.city_name: 'Select location'}}<mat-icon style="color: white">location</mat-icon></button>
+
+
+  <div class="spacer"></div>
+
+
+
+
+
+
+  <button mat-button style="background-color: black;width: 30px; border-radius: 10px;border: 1px white solid; margin-right: 10px" (click)="drawer.toggle()" fxShow fxHide.gt-md>
+    <mat-icon style="color:white">{{(drawer.opened)?"close": "menu"}}</mat-icon>
+  </button>
+
+<mat-drawer-container>
+  <mat-drawer position="end" (click)="drawer.close()" fxShow fxHide.gt-md #drawer class="sidenav1" mode="side" >
+    <div>
+      <div align="end">
+        <button mat-button style="background-color: transparent; padding-top: 10px; padding-bottom: 10px; align-self: end" (click)="drawer.toggle()">
+          <mat-icon style="color: white">close</mat-icon>
+        </button>
+      </div>
+
+
+      <button *ngIf="!isLoggedIn" class="toolbar-button-rectangle " (click)="openLoginDialog()">
+        <span>Login</span>
+      </button>
+
+
+      <button *ngIf="isLoggedIn" class="toolbar-button-rectangle" routerLink="profile" routerLinkActive="true">
+        Dashboard
+        <mat-icon style="color: #eeeeee">account_circle</mat-icon>
+      </button>
+
+
+      <button class="toolbar-button-rectangle" routerLink="/search" routerLinkActive="true"
+              style="white-space: nowrap;">
+        Find Advocates
+      </button>
+
+      <button class="toolbar-button-rectangle" routerLink="/news" routerLinkActive="true"
+              style="white-space: nowrap;">
+        Latest Legal News
+      </button>
+
+      <button class="toolbar-button-rectangle" routerLink="/about" routerLinkActive="true"
+              style="white-space: nowrap;">
+        About Us
+      </button>
+      <button class="toolbar-button-rectangle" routerLink="/faqs" routerLinkActive="true"
+              style="white-space: nowrap;">
+        FAQs
+      </button>
+      <button class="toolbar-button-rectangle" routerLink="events" routerLinkActive="true"
+              style="white-space: nowrap;">
+        Contact Us
+      </button>
+
+    </div>
+
+
+
+  </mat-drawer>
+</mat-drawer-container>
+
+
+
+
+  <div fxLayout="row" fxHide fxShow.gt-md >
+
+
+    <button class="toolbar-button-rectangle" routerLink="/search" routerLinkActive="true"
+            style="white-space: nowrap;">
+      Find Advocates
+    </button>
+
+    <button class="toolbar-button-rectangle" routerLink="/news" routerLinkActive="true"
+                     style="white-space: nowrap;">
+    Latest Legal News
+  </button>
+
+    <button class="toolbar-button-rectangle" routerLink="/about" routerLinkActive="true"
+                   style="white-space: nowrap;">
+    About Us
+  </button>
+    <button class="toolbar-button-rectangle" routerLink="/faqs" routerLinkActive="true"
+            style="white-space: nowrap;">
+FAQs
+    </button>
+    <button class="toolbar-button-rectangle" routerLink="events" routerLinkActive="true"
+            style="white-space: nowrap;">
+      Contact Us
+    </button>
+  </div>
+  <div fxHide fxShow.gt-md class="spacer"></div>
+  <div fxHide fxShow.gt-md>
+
+
+
+    <button *ngIf="!isLoggedIn" class="toolbar-button-rectangle " (click)="openLoginDialog()">
+      <span>Login</span>
+    </button>
+
+
+    <button *ngIf="isLoggedIn" class="toolbar-button-rectangle" routerLink="profile" routerLinkActive="true">
+      Dashboard
+      <mat-icon style="color: #eeeeee">account_circle</mat-icon>
+    </button>
+
+  </div>
+
+
+
+</div>
+
+

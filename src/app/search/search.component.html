@@ -1,0 +1,182 @@
+
+
+<div align="center" fxLayout="row wrap" fxLayoutAlign="center " ngStyle.lt-sm='padding-top:180px' ngStyle.lt-md="padding-top:125px" style="width: 100%;max-width: 100%; padding-top: 70px;" >
+  <div *ngIf="advocates.length==0" style="margin-top: 30px">
+    <div style="font-size: 24px; margin: 10px; color: #3871e0">Get the best lawyer for your issue. We have</div>
+    <div  fxLayout="row wrap"  fxLayoutAlign="center">
+      <div align="center" style="width: 350px; max-width: 90vw; margin: 20px 0px" fxLayout="row">
+        <img src="assets/advocate-icon.png" style="height: 90px; width: 90px; margin: 0; margin-right: 30px">
+        <div fxLayout="column" style="height: fit-content">
+          <label style="font-size: 70px;padding-top:20px;height: 60px; margin-top: 0px;">900</label>
+          <label style="font-size: 30px; text-align: left; padding-left: 10px; color: darkred">Lawyers</label>
+        </div>
+      </div>
+      <div align="center" style="width: 350px; max-width: 90vw;margin: 20px 0px" fxLayout="row">
+        <img src="assets/city-icon.png" style="height: 90px; width: 90px; margin: 0; margin-right: 30px">
+        <div fxLayout="column" style="height: fit-content">
+          <label style="font-size: 70px;padding-top:20px;height: 60px; margin-top: 0px">8000</label>
+          <label style="font-size: 30px; text-align: left; padding-left: 10px; color: darkred">Cities</label>
+        </div>
+      </div>
+      <div align="center" style="width: 350px; max-width: 90vw;margin: 20px 0px" fxLayout="row">
+        <img src="assets/query-icon.png" style="height: 90px; width: 90px; margin: 0; margin-right: 30px">
+        <div fxLayout="column" style="height: fit-content">
+          <label style="font-size: 70px;padding-top:20px;height: 60px; margin-top: 0px">1000</label>
+          <label style="font-size: 30px;text-align: left; padding-left: 10px;color: darkred">Enquiries</label>
+        </div>
+      </div>
+    </div>
+
+
+    <div style="font-size: 24px; margin: 10px; color: black; margin-top: 50px; margin-bottom: 30px">Search or select from the following specializations</div>
+    <div align="center" fxLayout="row wrap" fxLayoutAlign="center">
+      <div align="center" *ngFor="let spec of specs"   style="width: 250px;">
+        <mat-card style="border-radius: 10px" class="item" (click)="tag_id!.setValue(spec!.id!)">
+          <div class="align-items-center d-flex justify-content-center" style="height: 100%; font-size: 16px">{{spec.title}}</div>
+        </mat-card>
+      </div>
+    </div>
+
+  </div>
+  <div *ngFor="let advocate of advocates" fxLayout="row wrap" style="max-width:100%;padding: 10px" >
+    <mat-card class="advocate-card card11" (click)="view_advocate(advocate.id!)" style="width: 380px;max-width: 100%;margin: 0; height: 215px; border-radius: 10px;">
+      <div fxLayout="row" style="display: flex">
+        <div style="width: 30%">
+          <div style="height: 125px; width: 105px;margin-bottom: 10px; margin-top:10px;;overflow: hidden">
+            <img [src]="advocate.image" width="105" >
+          </div>
+          <div fxLayout="column">
+            <div fxLayout="row" style="padding: 0; margin:0; height: 20px">
+              <mat-icon style="font-size: 14px; margin-top: 3px; width: 18px">room</mat-icon>
+              <div style="font-size: 14px; height: 20px">
+                {{advocate.operational_city!.city_name}}</div>
+            </div>
+            <div style="font-size: 12px; margin-top: 0">
+              {{advocate.operational_city!.state}}</div>
+          </div>
+
+
+        </div>
+
+
+        <div align="left" style="margin-left: 15px; flex-grow: 1">
+          <div class="name">
+            <b>{{advocate.first_name}} {{advocate.middle_name}} {{advocate.last_name}}</b></div>
+          <mat-chip-list class="tag-list"  fxLayout="row wrap">
+            <mat-chip style="background-color: darkgreen; " *ngIf="advocate.is_verified">
+              <mat-icon style="color: white; font-size: 14px; margin-top: 8px; width: 16px">verified_user</mat-icon>
+              Verified
+            </mat-chip>
+            <mat-chip *ngFor="let tag of advocate.advocate_tags " >{{tag.title}}</mat-chip>
+          </mat-chip-list>
+
+          <div fxLayout="column" fxLayoutAlign="space-between" style="margin-top: 10px">
+            <div fxLayout="row" fxLayoutAlign="space-between">
+              <div fxLayout="row">
+                <mat-icon style="font-size: 14px; margin-top: 3px; width: 16px">money</mat-icon>
+                <div style="font-size: 13px">Consultation Fee</div>
+              </div>
+              <div fxLayout="row">
+                <mat-icon style="font-size: 14px; margin-top: 3px; width: 16px">work</mat-icon>
+                <div style="font-size: 13px">Experience</div>
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="space-between">
+              <div style="color: darkred; font-size: 22px">
+                {{(advocate.consultation_fee!=0)?"&#8377;"+ advocate.consultation_fee: 'Free'}}
+              </div>
+              <div style="color: darkred; font-size: 16px">
+                {{current_year-advocate.career_start_year! + " Years"}}
+              </div>
+            </div>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="space-between" style="margin-top: 8px">
+            <div>
+              <div style="font-size: 12px">Rating</div>
+              <div style="display: flex;font-size: 13px; align-items: center">{{advocate.rating}}/5</div>
+            </div>
+            <div style="margin-top: 2px">
+              <star-rating [starType]="'svg'" [rating]="advocate.rating!" [staticColor]="'ok'" [showHalfStars]="true"  [readOnly]="true" [size]="'large'"></star-rating>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+
+
+
+</div>
+<div *ngIf="(advocates.length%10)==0 && advocates.length!=0" align="center" style="margin-top: 30px">
+  <button class="button22" (click)="loadmore(data.value)">Load more</button>
+</div>
+
+
+
+<div  style="width: 100%; ">
+  <div   [formGroup]="data" style="background-color: #206398 ; position: fixed; padding: 5px 0px; top: 60px; width: 100%;">
+    <div fxLayout="row wrap" fxLayoutAlign="center" fxLayout.lt-sm="column">
+
+      <div class="card11 no-pad" fxLayout="row" style="margin: 5px">
+        <button mat-icon-button style=" padding: 0px;">
+          <mat-icon matPrefix class="input-icon">person</mat-icon>
+        </button>
+        <input type="text"
+               placeholder="Start typing advocate name"
+               aria-label="String"
+               matInput
+               #nameSearch
+               formControlName="name"
+               style="width: 100%"
+               ngStyle.gt-xs="width: 400px"
+
+        >
+      </div>
+      <div fxLayout="row wrap"  fxLayoutAlign.lt-sm="column" fxLayoutAlign="center">
+        <div
+          class="card11 no-pad" fxLayout="row" style="margin: 5px; "
+          ngStyle.lt-sm="width:100vh"
+        >
+          <button mat-icon-button style=" padding: 0px;">
+            <mat-icon matPrefix class="input-icon">place</mat-icon>
+          </button>
+          <search-dropdown
+            [items]="cities"
+            [placeholder]="'Any city'"
+            [display_label]="'city_name'"
+            [value]="'id'"
+            formControlName="city_id"
+            style="width: 100%"
+            ngStyle.gt-xs="width: 190px"
+          >
+          </search-dropdown>
+        </div>
+
+        <div
+          class="card11 no-pad"  fxLayout="row" style="margin: 5px"
+          ngStyle.lt-sm="width:100vh"
+
+        >
+          <search-dropdown
+            [items]="specs"
+            [placeholder]="'Any specialization'"
+            [display_label]="'title'"
+            [value]="'id'"
+            formControlName="tag_id"
+            style="width: 100%"
+            ngStyle.gt-xs="width: 190px"
+
+          >
+          </search-dropdown>
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,261 @@
+
+<div align="center" *ngIf="advocate">
+  <div align="center" style="width: 1100px; max-width: 100%; "  >
+    <div  style="width: 100%" fxLayout="row" fxLayout.lt-md="column" >
+      <div ngStyle.lt-md="width:100%; max-width: 500px; margin:auto; height: auto" style="width: 600px;  max-width: 100%; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;margin: 3px; height: 100vh; overflow-y: scroll">
+        <div style="border-bottom: #444444 solid 1px!important;padding: 10px;">
+          <div fxLayout="row" style="height: 150px; max-height: 35vw; padding-left: 10px">
+            <div align="left">
+              <img  [src]="advocate.image || 'assets/advocate-icon.png'" style="width: 150px;max-width: 35vw;; aspect-ratio: 1; border-radius: 50%">
+            </div>
+            <div align="right" style="width: 100%; position: relative; padding-top: 10px" *ngIf="advocate.rating!=null">
+              <div style="max-width: 70vw;overflow: hidden" >
+                <star-rating style="position: absolute; right: 5px" [rating]="advocate.rating" [showHalfStars]="true" [readOnly]="true" [size]="'large'" ></star-rating>
+                <div style="position: absolute; right: 12px; top: 50px">Rating : {{advocate.rating}} out of 5</div>
+              </div>
+              <div style="padding-right: 10px;" fxLayout="column" >
+                <a [href]="'tel://'+advocate.phone1"><button mat-button class="button11" style="position: absolute; bottom: 0; right: 0; margin: 10px; " >
+                  Call Now
+                  </button></a>
+              </div>
+            </div>
+
+          </div>
+          <div align="left" style="padding-left: 10px" *ngIf="advocate.first_name!=null">
+            <div class="name">{{advocate.first_name+ " "+ advocate.last_name}}
+              <mat-chip style="background-color: darkgreen;min-height: 20px!important;
+  height: 20px!important;
+  font-size: 12px;
+  padding: 8px;
+  margin: 2px; " *ngIf="advocate.is_verified">
+                <mat-icon style="color: white; font-size: 14px; margin-top: 8px; width: 16px">verified_user</mat-icon>
+                Verified
+              </mat-chip>
+            </div>
+            <div class="bio blue">{{advocate.bio}}</div>
+          </div>
+          <div class="ash" style="  padding-left: 5px;
+">
+            <div fxLayout="row" *ngIf="advocate.bar_registration_number!=null">
+              <mat-icon>work</mat-icon>
+              <div>
+                Reg.No. {{advocate.bar_registration_number}}
+              </div>
+            </div>
+            <div fxLayout="row"  >
+              <mat-icon>mail</mat-icon>
+              <div>
+                {{advocate.username}}
+              </div>
+            </div>
+
+            <div fxLayout="row" *ngIf="advocate.first_name">
+              <mat-icon>room</mat-icon>
+              <div>
+                {{advocate.operational_city!.city_name+ ', '+ advocate.operational_city!.state}}
+              </div>
+            </div>
+            <div fxLayout="row" *ngIf="advocate.phone1!=null" >
+              <mat-icon>call</mat-icon>
+              <div>
+                {{advocate.phone1}}
+              </div>
+            </div>
+            <div fxLayout="row"  *ngIf="advocate.phone1!=null && advocate.phone2!.length>0">
+              <mat-icon>call</mat-icon>
+              <div>
+                {{advocate.phone2}}
+              </div>
+            </div>
+            <div fxLayout="row"   >
+              <mat-icon>male</mat-icon>
+              <div>
+                {{advocate.gender}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="card11" *ngIf="advocate.first_name">
+
+          <div >
+            <div fxLayout="row"  fxLayoutAlign="space-between" >
+              <div class="ash" fxLayout="row" >
+                <mat-icon>money</mat-icon>
+                <div >
+                  Consultation Fee
+                </div>
+              </div>
+              <div style="margin: 10px">
+                {{advocate.consultation_fee}}
+              </div>
+            </div>
+            <div fxLayout="row"  fxLayoutAlign="space-between" >
+              <div class="ash" fxLayout="row" >
+                <mat-icon>work</mat-icon>
+                <div>
+                  Experience (in years)
+                </div>
+              </div>
+              <div style="margin: 10px">
+                {{current_year-advocate.career_start_year!}}
+              </div>
+            </div>
+            <div fxLayout="row"  fxLayoutAlign="space-between" >
+              <div class="ash" fxLayout="row" >
+                <mat-icon>tag</mat-icon>
+                <div>
+                  Tags
+                </div>
+              </div>
+            </div>
+            <mat-chip-list style="margin: 20px" fxLayout="row wrap" fxLayoutAlign="center">
+              <mat-chip *ngFor="let tag of advocate.advocate_tags" style="background-color: #206398">
+                <div style="font-size: 14px; color: white;">{{tag.title}}</div>
+              </mat-chip>
+            </mat-chip-list>
+          </div>
+        </div>
+
+
+
+
+        <div class="card11" *ngIf="advocate.first_name">
+          <div fxLayout="row" fxLayoutAlign="space-between" style="background-color: white">
+            <div style="margin : 10px 10px 0px 10px ">Addresses</div>
+          </div>
+
+          <div class="ash" align="left" fxLayout="column">
+            <div style="margin:10px; color: black ">Residential Addresses</div>
+            <div fxLayout="row" style="margin-left:10px;"  >
+              <mat-icon>home</mat-icon>
+              <div>
+                {{advocate.home_address?.door_no + ', ' + advocate.home_address?.street + ', ' + advocate.home_address?.city?.city_name + ', ' + advocate.home_address?.pincode}}
+              </div>
+            </div>
+            <div style="margin:10px; color: black ">Office Addresses</div>
+            <div fxLayout="row" style="margin-left:10px;" >
+              <mat-icon>work</mat-icon>
+              <div>
+                {{advocate.office_address?.door_no + ', ' + advocate.office_address?.street + ', ' + advocate.office_address?.city?.city_name + ', ' + advocate.office_address?.pincode}}
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+
+      <div ngStyle.lt-md="width:100%; max-width: 500px; margin:auto;height: auto" style="width: 500px;padding-top: 20px;  max-width: 100%; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;margin: 3px; height: 100vh; overflow-y: scroll " fxLayout="column">
+        <div class="heading11" style="font-size: 20px">Contact Form</div>
+
+        <div class="card11">
+          <div [formGroup]="user_attributes" >
+            <div formGroupName="user_detail_attributes">
+              <div formGroupName="contact_detail_attributes">
+                <div>
+                  <mat-card class="input-card" fxLayout="column">
+                    <div class="input-label">Email *</div>
+                    <div fxLayout="row" fxLayoutAlign="space-between" class="input-wrapper">
+                      <input matInput formControlName="contact_email" placeholder="Email ID *" >
+                      <mat-icon  *ngIf="email!.touched"
+                                 [style.color]="email!.valid? 'green' : 'red'">
+                        {{email!.valid ? 'check_circle' : 'error'}}</mat-icon>
+                    </div>
+                  </mat-card>
+
+                  <mat-card class="input-card" fxLayout="column">
+                    <div class="input-label">Phone *</div>
+                    <div fxLayout="row" fxLayoutAlign="space-between" class="input-wrapper">
+                      <input matInput formControlName="phone1" placeholder="Phone *" >
+                      <mat-icon  *ngIf="phone!.touched"
+                                 [style.color]="phone!.valid? 'green' : 'red'">
+                        {{phone!.valid ? 'check_circle' : 'error'}}</mat-icon>
+                    </div>
+                  </mat-card>
+                </div>
+              </div>
+              <div formGroupName="name_attributes">
+                <div>
+                  <mat-card class="input-card" fxLayout="column">
+                    <div class="input-label">Sender's name *</div>
+                    <div fxLayout="row" fxLayoutAlign="space-between" class="input-wrapper">
+                      <input matInput formControlName="first_name" placeholder="Name *" >
+                      <mat-icon  *ngIf="name!.touched"
+                                 [style.color]="name!.valid? 'green' : 'red'">
+                        {{name!.valid ? 'check_circle' : 'error'}}</mat-icon>
+                    </div>
+                  </mat-card>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div [formGroup]="contact_form">
+            <mat-card class="input-card" fxLayout="column">
+              <div class="input-label">Subject *</div>
+              <div fxLayout="row" fxLayoutAlign="space-between" class="input-wrapper">
+                <select required formControlName="interaction_type" style="font-size: 14px">
+                  <option value="1">Request Appointment</option>
+                  <option value="2">Consultation</option>
+                  <option value="3">Feedback or suggestion</option>
+                </select>
+              </div>
+
+            </mat-card>
+
+            <mat-card class="input-card" fxLayout="column">
+              <div class="input-label">Message *</div>
+              <div fxLayout="row" fxLayoutAlign="space-between" class="input-wrapper">
+                <textarea style="height: 150px" matInput formControlName="message" placeholder="Message *" ></textarea>
+
+              </div>
+            </mat-card>
+          </div>
+
+
+          <div style="padding: 0px 0px" >
+            <button mat-button class="button22" (click)="submit()" [disabled]="!contact_form?.valid">
+              Send Message
+            </button>
+          </div>
+
+          <div class="input-label" >The advocate will respond to your message within 24 hours. </div>
+
+        </div>
+
+
+
+        <div *ngIf="loginStatus">
+          <div class="heading11" style="font-size: 20px">Previous Interactions</div>
+
+          <div class="card11" align="left"  *ngFor="let interaction of advocate.interactions">
+            <div class="heading11" style="font-weight: bold; padding-left: 10px">{{interaction.interaction_type}}</div>
+            <div class="input-label" style="padding-left: 10px">{{interaction.updated_at}}</div>
+            <div class="text11 text-box" style="color: #444444">{{interaction.message}}</div>
+          </div>
+        </div>
+
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

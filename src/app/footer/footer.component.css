@@ -1,0 +1,32 @@
+.footer {
+    background-color: black;
+    padding: 50px;
+    margin-top: 10vh;
+    bottom: 0 !important;
+}
+
+.text {
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.socialicons i {
+    font-size: 30px;
+}
+
+.socialicons .fa-facebook {
+    color: white;
+}
+
+.socialicons .fa-twitter {
+    color: white;
+}
+
+.socialicons .fa-linkedin {
+    color: white;
+}
+
+.socialicons .fa-google-plus-g {
+    color: white;
+}
